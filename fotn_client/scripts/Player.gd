@@ -4,6 +4,7 @@ export var speed := 7.0
 export var jump_strenght := 20.0
 export var gravity := 50.0
 export var _uid := ""
+export var _name := ""
 
 var _velocity := Vector3.ZERO
 var _snap_vector := Vector3.DOWN
@@ -11,6 +12,9 @@ var _snap_vector := Vector3.DOWN
 onready var _spring_arm: SpringArm = $SpringArm
 onready var _model: Spatial = $PlayerSkin
 onready var _anim_player = $PlayerSkin/AnimationPlayer
+
+func _ready():
+	$Name.text = _name
 
 func _physics_process(delta: float) -> void:
 	# retrieve move direction from input
@@ -25,14 +29,14 @@ func _physics_process(delta: float) -> void:
 	_velocity.y -= gravity * delta
 
 	# jumping control
-	var just_landed := is_on_floor() && _snap_vector == Vector3.ZERO
-	var is_jumping := is_on_floor() && Input.is_action_just_pressed("ui_accept")
+	#var just_landed := is_on_floor() && _snap_vector == Vector3.ZERO
+	#var is_jumping := is_on_floor() && Input.is_action_just_pressed("ui_accept")
 	
-	if is_jumping:
-		_velocity.y = jump_strenght
-		_snap_vector = Vector3.ZERO
-	elif just_landed:
-		_snap_vector = Vector3.DOWN
+	#if is_jumping:
+	#	_velocity.y = jump_strenght
+	#	_snap_vector = Vector3.ZERO
+	#elif just_landed:
+	#	_snap_vector = Vector3.DOWN
 
 	_velocity = move_and_slide_with_snap(_velocity, _snap_vector, Vector3.UP, true)
 	
@@ -56,6 +60,13 @@ func _physics_process(delta: float) -> void:
 
 func _process(_delta: float) -> void:
 	_spring_arm.translation = translation
+
+func _input(event):
+	if event is InputEventMouseButton:
+		print("mouse clicked !", event.position)
+		# run weapon animation
+		# checkup if weapon hitbox hit enemy
+		# apply damages
 
 func setUid(uid):
 	_uid = uid

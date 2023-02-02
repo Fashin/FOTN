@@ -9,6 +9,8 @@ module.exports = class Player {
             z: 0
         }
         this.look_direction = 0
+        this.health = 100
+        this.kills = 0
     }
 
     is(uid) {
