@@ -36,9 +36,10 @@ func _physics_process(delta: float) -> void:
 
 	_velocity = move_and_slide_with_snap(_velocity, _snap_vector, Vector3.UP, true)
 	
+	var look_direction = Vector2(_velocity.z, _velocity.x).angle()
+	
 	if _velocity.length() > 0.2:
-		var look_direction = Vector2(_velocity.z, _velocity.x)
-		_model.rotation.y = look_direction.angle()
+		_model.rotation.y = look_direction
 
 	if (move_direction.x != 0 or move_direction.y != 0) and _anim_player.current_animation != "running":
 		_anim_player.play("running")
@@ -49,7 +50,8 @@ func _physics_process(delta: float) -> void:
 		Network.movePlayer({
 			'x': position.x,
 			'y': 1,
-			'z': position.z
+			'z': position.z,
+			'look_direction': look_direction
 		}, _uid)
 
 func _process(_delta: float) -> void:

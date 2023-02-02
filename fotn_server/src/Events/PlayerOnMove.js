@@ -8,7 +8,6 @@ module.exports = class PlayerOnMove {
     }
 
     handle(connection, payload) {
-        console.log(payload);
         if (!('uid' in payload) && !this.core.players.exists(payload.uid))
             response.error(connection, errorEnum.UID_NOT_FOUND, { msg: "Error from sended data"})
 

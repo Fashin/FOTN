@@ -1,13 +1,14 @@
 module.exports = class Player {
     constructor({ name, connection }, uid) {
         this.uid = uid
-        this.name = name,
+        this.connection = connection
+        this.name = name
         this.position = {
             x: 0,
             y: 0,
             z: 0
         }
-        this.connection = connection
+        this.look_direction = 0
     }
 
     is(uid) {
@@ -16,8 +17,9 @@ module.exports = class Player {
 
     updatePosition(position) {
         this.position.x = position.x
-        this.position.y = position.y // need review for jump down
+        this.position.y = position.y // need review for jump
         this.position.z = position.z
+        this.look_direction = position.look_direction
 
         return this
     }
@@ -38,7 +40,8 @@ module.exports = class Player {
         return {
             uid: this.uid,
             name: this.name,
-            position: this.position
+            position: this.position,
+            look_direction: this.look_direction
         }
     }
 }

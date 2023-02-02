@@ -1,7 +1,7 @@
 extends KinematicBody
 
+onready var _anim_player = $PlayerSkin/AnimationPlayer
 export var _uid := ""
-#onready var _anim_player = $PlayerSkin/AnimationPlayer
 var position = Vector3.ZERO
 
 func _ready():
@@ -9,4 +9,9 @@ func _ready():
 
 func handlePlayerMoving(data):
 	if data.player.uid == _uid:
-		self.global_transform.origin = Vector3(data.player.position.x, data.player.position.y, data.player.position.z)
+		var origin = Vector3(data.player.position.x, data.player.position.y, data.player.position.z)
+		self.global_transform.origin = origin
+		self.rotation.y = data.player.look_direction
+		
+		if _anim_player.current_animation != "running":
+			_anim_player.play("running")

@@ -5,20 +5,22 @@ var otherPlayer = preload("res://scenes/PlayerTemplate.tscn")
 
 func _ready():
 	Network.connect("player_is_logged", self, "handleLoggedPlayer")
+	Network.connect("player_is_disconnected", self, "despawnPlayer")
 
-func spawnPlayer(player_id, currentInstance):
+func spawnPlayer(player, currentInstance, type = "Others"):
 	var new_player = currentInstance.instance()
-	#new_player.position = position
-	new_player._uid = str(player_id)
-	#new_player._velocity = Vector3.ZERO
-	new_player.name = "Player" + str(player_id)
-	#new_player.set_translation(Vector3.ZERO)
+	var origin = Vector3(player.position.x, player.position.y, player.position.z)
+	
+	new_player.global_transform.origin = origin
+	new_player._uid = str(player.uid)
+	new_player.name = type + "_" + str(player.uid)
 	get_tree().get_root().add_child(new_player, true)
 	
-func despawnPlayer(player_id):
-	get_tree().get_root().queue_free()
+func despawnPlayer(data):
+	for _node in get_tree().get_root().get_children():
+		if _node.name == "Others_" + data.uid:
+			_node.get_parent().remove_child(_node)
 
-# TODO
 func userIsAlreadySpawn(player):
 	var isAlreadySpawn = false
 	
@@ -33,14 +35,14 @@ func userIsAlreadySpawn(player):
 # check if asked player is in actual tree list
 func handleLoggedPlayer(data):
 	if !(userIsAlreadySpawn(data.player)):
-		spawnPlayer(data.player.uid, otherPlayer)
+		spawnPlayer(data.player, otherPlayer)
 
 func handleAlreadyConnectedPlayers(data):
 	for _player in data:
 		if !(userIsAlreadySpawn(_player)):
-			spawnPlayer(_player.uid, otherPlayer)
+			spawnPlayer(_player, otherPlayer)
 
 # Spawn actual player & all others players
 func load_player_parameters(data):
-	spawnPlayer(data.player.uid, player)
+	spawnPlayer(data.player, player, "Player")
 	handleAlreadyConnectedPlayers(data.players)
