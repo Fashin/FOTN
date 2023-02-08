@@ -14,7 +14,6 @@ size = Vector3( 100, 0, 100 )
 albedo_color = Color( 0.823529, 0.811765, 0.219608, 1 )
 
 [sub_resource type="BoxShape" id=6]
-resource_name = "Box"
 
 [sub_resource type="CubeMesh" id=7]
 

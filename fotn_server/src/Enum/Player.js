@@ -5,4 +5,7 @@ module.exports = {
     PLAYER_IS_DISCONNECTED: 'player_is_disconnected',
     PLAYER_ON_MOVE: 'player_on_move',
     PLAYER_HAS_MOVE: 'player_has_move',
+    PLAYER_IS_ATTACKED: 'player_is_attacked',
+    PLAYER_ON_COUNTER: 'player_on_counter',
+    PLAYER_END_COUNTER: 'player_end_counter'
 }

@@ -6,7 +6,7 @@ const { request } = require('../Util/Network')
 class Game {
     constructor(server) {
         this.server = server
-        // this.loop = new Loop()
+        this.loop = new Loop()
         this.events = null
         this.connection = null
         this.players = new Players()
@@ -20,7 +20,7 @@ class Game {
             this.handleRequests()
         })
 
-        // this.loop.run()
+        this.loop.run(this)
     }
 
     handleRequests() {        

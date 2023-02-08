@@ -31,7 +31,6 @@ func _physics_process(delta: float) -> void:
 	# jumping control
 	#var just_landed := is_on_floor() && _snap_vector == Vector3.ZERO
 	#var is_jumping := is_on_floor() && Input.is_action_just_pressed("ui_accept")
-	
 	#if is_jumping:
 	#	_velocity.y = jump_strenght
 	#	_snap_vector = Vector3.ZERO
@@ -60,13 +59,6 @@ func _physics_process(delta: float) -> void:
 
 func _process(_delta: float) -> void:
 	_spring_arm.translation = translation
-
-func _input(event):
-	if event is InputEventMouseButton:
-		print("mouse clicked !", event.position)
-		# run weapon animation
-		# checkup if weapon hitbox hit enemy
-		# apply damages
 
 func setUid(uid):
 	_uid = uid

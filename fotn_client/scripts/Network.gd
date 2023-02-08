@@ -7,6 +7,9 @@ signal player_is_login()
 signal player_is_logged()
 signal player_is_disconnected()
 signal player_has_move()
+signal player_is_attacked()
+signal player_on_counter()
+signal player_end_counter()
 
 func _ready():
 	client.connect('data_received', self, 'data_received')
@@ -45,6 +48,12 @@ func login(pseudo):
 	
 func movePlayer(position, playerUid):
 	sendData({ 'position': position, 'uid': playerUid}, 'PlayerOnMove')
+
+func attackPlayer(attackType, uid):
+	sendData({ 'attackType': attackType, 'uid': uid }, 'AttackPlayer')
+
+func runCounter(uid):
+	sendData({ 'counter': true, 'uid': uid}, 'RunCounter')
 
 func sendData(data, eventName):
 	client.get_peer(1).put_packet(JSON.print({

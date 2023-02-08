@@ -2,12 +2,12 @@
 
 importer="scene"
 type="PackedScene"
-path="res://.import/fourth_player.gltf-fec3fd6d707430e142ee14ced830195a.scn"
+path="res://.import/player5.gltf-4cde1c082e288d7676c6a7b52d66683a.scn"
 
 [deps]
 
-source_file="res://assets/fourth_player.gltf"
-dest_files=[ "res://.import/fourth_player.gltf-fec3fd6d707430e142ee14ced830195a.scn" ]
+source_file="res://assets/player/player5.gltf"
+dest_files=[ "res://.import/player5.gltf-4cde1c082e288d7676c6a7b52d66683a.scn" ]
 
 [params]
 

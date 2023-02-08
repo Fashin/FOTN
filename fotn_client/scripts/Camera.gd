@@ -12,3 +12,8 @@ func _unhandled_input(event):
 		
 		rotation_degrees.y -= event.relative.x
 		rotation_degrees.y = wrapf(rotation_degrees.y, 0.0, 360)
+	elif event is InputEventMouseButton:
+		if event.button_index == BUTTON_WHEEL_DOWN && $Camera.fov < 110:
+			$Camera.fov += 2
+		elif event.button_index == BUTTON_WHEEL_UP && $Camera.fov > 38:
+			$Camera.fov -= 2

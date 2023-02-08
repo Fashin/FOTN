@@ -14,7 +14,10 @@ func spawnPlayer(player, currentInstance, type = "Others"):
 	new_player.global_transform.origin = origin
 	new_player._uid = str(player.uid)
 	new_player._name = str(player.name)
-	new_player.name = type + "_" + str(player.uid)
+	if type == "Player":
+		new_player.name = type
+	else:
+		new_player.name = type + "_" + str(player.uid)
 	get_tree().get_root().add_child(new_player, true)
 	
 func despawnPlayer(data):

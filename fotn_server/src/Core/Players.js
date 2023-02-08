@@ -1,7 +1,5 @@
 const crypto = require('crypto')
 const Player = require('./Player')
-const { response } = require('../Util/Network')
-const playerEnum = require('../Enum/Player')
 
 module.exports = class Players {
     constructor() {
@@ -22,6 +20,10 @@ module.exports = class Players {
 
     getPlayers() {
         return this.players
+    }
+
+    find(uid) {
+        return this.players.filter(player => player.is(uid))[0]
     }
 
     applyPlayerFunction(uid, handle, data) {

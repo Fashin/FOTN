@@ -1,9 +1,12 @@
 module.exports = class Loop {
     constructor() {}
 
-    run() {
+    run(core) {
         setTimeout(() => {
-            this.run()
+            
+            
+
+            this.run(core)
         }, 1000 / 60)
     }
 }

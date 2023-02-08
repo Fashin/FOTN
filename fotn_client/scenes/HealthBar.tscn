@@ -75,7 +75,7 @@ void light() {
 
 }
 "
-graph_offset = Vector2( -364.264, -447.248 )
+graph_offset = Vector2( -437.075, -478.288 )
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2( 1000, 0 )
@@ -96,23 +96,24 @@ nodes/fragment/8/position = Vector2( 460, -280 )
 nodes/fragment/connections = PoolIntArray( 3, 0, 4, 0, 4, 0, 5, 0, 6, 0, 5, 1, 2, 0, 7, 0, 7, 0, 0, 0, 5, 0, 7, 2, 2, 0, 8, 0, 8, 0, 7, 1 )
 
 [sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
 shader = SubResource( 2 )
 shader_param/color = Color( 0.117647, 0.713726, 0.211765, 1 )
-shader_param/health = 0.5
+shader_param/health = 1.0
 
 [sub_resource type="ViewportTexture" id=10]
 viewport_path = NodePath("Viewport")
 
-[node name="root" type="Sprite3D"]
+[node name="HealthBar" type="Sprite3D"]
 transparent = false
 
 [node name="Viewport" type="Viewport" parent="."]
-size = Vector2( 640, 30 )
+size = Vector2( 640, 20 )
 
 [node name="Sprite" type="Sprite" parent="Viewport"]
 show_behind_parent = true
 material = SubResource( 3 )
-position = Vector2( 320, 33 )
+position = Vector2( 320, 32 )
 scale = Vector2( 10, 1 )
 texture = ExtResource( 1 )
 
