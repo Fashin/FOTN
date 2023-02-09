@@ -7,5 +7,8 @@ module.exports = {
     PLAYER_HAS_MOVE: 'player_has_move',
     PLAYER_IS_ATTACKED: 'player_is_attacked',
     PLAYER_ON_COUNTER: 'player_on_counter',
-    PLAYER_END_COUNTER: 'player_end_counter'
+    PLAYER_END_COUNTER: 'player_end_counter',
+    PLAYER_STAMINA_UPDATE: 'player_stamina_update',
+    PLAYER_RUN_ATTACK: 'player_run_attack',
+    PLAYER_IS_DEAD: 'player_is_dead'
 }

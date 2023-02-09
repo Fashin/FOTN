@@ -24,7 +24,8 @@ module.exports = class ConnectPlayer {
 
         // send response to already connected player to one new player is connected
         response.allPlayer(this.core.players, playerEnum.PLAYER_IS_LOGGED, {
-            player: player.toString()
+            player: player.toString(),
+            players: this.core.players.toString()
         })
     }
 }

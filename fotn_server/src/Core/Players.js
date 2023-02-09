@@ -15,7 +15,17 @@ module.exports = class Players {
     }
 
     remove(uid) {
-        this.players = this.players.filter(player => !player.is(uid))
+        let removedPlayer = null
+
+        this.players = this.players.filter(player => {
+            if (!player.is(uid))
+                return true
+
+            removedPlayer = player
+            return false
+        })
+
+        return removedPlayer
     }
 
     getPlayers() {

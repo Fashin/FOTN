@@ -1,0 +1,84 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/Parameters.gd" type="Script" id=1]
+
+[node name="Parameters" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="WindowDialog" type="WindowDialog" parent="."]
+visible = true
+margin_left = 322.0
+margin_top = 68.0
+margin_right = 730.0
+margin_bottom = 327.0
+
+[node name="Label" type="Label" parent="WindowDialog"]
+margin_left = 72.0
+margin_top = 54.0
+margin_right = 123.0
+margin_bottom = 68.0
+text = "Avancer"
+
+[node name="Forward" type="LineEdit" parent="WindowDialog"]
+margin_left = 153.0
+margin_top = 49.0
+margin_right = 334.0
+margin_bottom = 73.0
+align = 1
+
+[node name="Label2" type="Label" parent="WindowDialog"]
+margin_left = 72.0
+margin_top = 89.0
+margin_right = 123.0
+margin_bottom = 103.0
+rect_pivot_offset = Vector2( 119, 26 )
+text = "Reculer"
+
+[node name="Backward" type="LineEdit" parent="WindowDialog"]
+margin_left = 153.0
+margin_top = 84.0
+margin_right = 334.0
+margin_bottom = 108.0
+rect_pivot_offset = Vector2( 38, 31 )
+align = 1
+
+[node name="Label3" type="Label" parent="WindowDialog"]
+margin_left = 72.0
+margin_top = 124.0
+margin_right = 123.0
+margin_bottom = 138.0
+rect_pivot_offset = Vector2( 161, 4 )
+text = "Droite"
+
+[node name="Right" type="LineEdit" parent="WindowDialog"]
+margin_left = 153.0
+margin_top = 119.0
+margin_right = 334.0
+margin_bottom = 143.0
+rect_pivot_offset = Vector2( 80, 9 )
+align = 1
+
+[node name="Label4" type="Label" parent="WindowDialog"]
+margin_left = 72.0
+margin_top = 158.0
+margin_right = 123.0
+margin_bottom = 172.0
+rect_pivot_offset = Vector2( 161, 4 )
+text = "Gauche"
+
+[node name="Left" type="LineEdit" parent="WindowDialog"]
+margin_left = 153.0
+margin_top = 153.0
+margin_right = 334.0
+margin_bottom = 177.0
+rect_pivot_offset = Vector2( 80, 9 )
+align = 1
+
+[node name="Button" type="Button" parent="WindowDialog"]
+margin_left = 112.0
+margin_top = 216.0
+margin_right = 307.0
+margin_bottom = 236.0
+text = "Sauvegarder"
+
+[connection signal="pressed" from="WindowDialog/Button" to="." method="_on_Button_pressed"]

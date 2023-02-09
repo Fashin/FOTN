@@ -11,10 +11,11 @@ module.exports = class Disconnected {
         if (!("uid" in payload))
             response.error(connection, errorEnum.UID_NOT_FOUND, { msg: "Error from sended data" })
 
-        this.core.players.remove(payload.uid)
+        const removedPlayer = this.core.players.remove(payload.uid)
 
         response.allPlayer(this.core.players, playerEnum.PLAYER_IS_DISCONNECTED, {
-            uid: payload.uid
+            uid: payload.uid,
+            name: removedPlayer?.name
         })
     }
 }

@@ -15,6 +15,7 @@ onready var _anim_player = $PlayerSkin/AnimationPlayer
 
 func _ready():
 	$Name.text = _name
+	Network.connect("player_is_dead", self, "handlePlayerIsDead")
 
 func _physics_process(delta: float) -> void:
 	# retrieve move direction from input
@@ -22,6 +23,13 @@ func _physics_process(delta: float) -> void:
 	move_direction.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	move_direction.z = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	move_direction = move_direction.rotated(Vector3.UP, _spring_arm.rotation.y).normalized()
+
+	if (_anim_player.current_animation == "attack_1" ||
+		_anim_player.current_animation == "attack_2" ||
+		_anim_player.current_animation == "attack_3" ||
+		_anim_player.current_animation == "counter"
+	):
+		return
 
 	# apply velocity
 	_velocity.x = move_direction.x * speed
@@ -62,3 +70,12 @@ func _process(_delta: float) -> void:
 
 func setUid(uid):
 	_uid = uid
+
+func handlePlayerIsDead(data):
+	if data.defendPlayer.uid == _uid:
+		var origin = Vector3(data.defendPlayer.position.x, data.defendPlayer.position.y, data.defendPlayer.position.z)
+		self.global_transform.origin = origin
+		$StaminaBar/Viewport/Sprite.material.set_shader_param("stamina", data.defendPlayer.stamina / 100)
+		$HealthBar/Viewport/Sprite.material.set_shader_param("health", data.defendPlayer.health / 100)
+	elif data.attackPlayer.uid == _uid:
+		$HealthBar/Viewport/Sprite.material.set_shader_param("health", data.attackPlayer.health / 100)

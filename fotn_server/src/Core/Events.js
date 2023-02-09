@@ -3,6 +3,7 @@ const PlayerOnMove = require('../Events/PlayerOnMove')
 const Disconnected = require('../Events/Disconnected')
 const RunCounter = require('../Events/RunCounter')
 const AttackPlayer = require('../Events/AttackPlayer')
+const RunAttack = require('../Events/RunAttack')
 
 class Events {
     constructor(core) {
@@ -12,6 +13,7 @@ class Events {
         this.Disconnected = new Disconnected(core)
         this.RunCounter = new RunCounter(core)
         this.AttackPlayer = new AttackPlayer(core)
+        this.RunAttack = new RunAttack(core)
     }
 
     // Sub class need have following prototype : handle(connection, payload)
@@ -25,7 +27,8 @@ const EVENT_LIST = [
     'PlayerOnMove',
     'Disconnected',
     'RunCounter',
-    'AttackPlayer'
+    'AttackPlayer',
+    'RunAttack'
 ]
 
 module.exports = {

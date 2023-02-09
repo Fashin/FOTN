@@ -9,14 +9,28 @@ module.exports = class AttackPlayer {
     }
 
     handle(connection, payload) {
-        if (!('uid' in payload) || !('attackType' in payload))
+        if (!('defendPlayerUid' in payload) || !('attackPlayerUid' in payload) || !('attackType' in payload))
             response.error(connection, errorEnum.PSEUDO_NOT_FOUND, { msg: "Error from sended data" })
 
-        const attackedPlayer = this.core.players.applyPlayerFunction(payload.uid, 'updateHealth', payload.attackType)
+        let defendPlayer = this.core.players.find(payload.defendPlayerUid)
+        let attackPlayer = this.core.players.find(payload.attackPlayerUid)
+        const oldDeaths = defendPlayer.deaths
 
-        response.allPlayer(this.core.players, playerEnum.PLAYER_IS_ATTACKED, {
-            attackPlayer: this.core.players.find(payload.uid).toString(),
-            defendPlayer: attackedPlayer.toString()
-        })
+        defendPlayer = defendPlayer.updateHealth(payload.attackType)
+
+        if (defendPlayer.deaths > oldDeaths) {
+            attackPlayer = attackPlayer.addKill()
+
+            response.allPlayer(this.core.players, playerEnum.PLAYER_IS_DEAD, {
+                attackPlayer: attackPlayer.toString(),
+                defendPlayer: defendPlayer.toString()                
+            })
+        }
+        else
+            response.allPlayer(this.core.players, playerEnum.PLAYER_IS_ATTACKED, {
+                attackPlayer: attackPlayer.toString(),
+                attackType: payload.attackType,
+                defendPlayer: defendPlayer.toString()
+            })
     }
 }

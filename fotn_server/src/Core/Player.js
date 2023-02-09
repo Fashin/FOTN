@@ -1,4 +1,5 @@
 const config = require('../config')
+const { randomInteger } = require('../Util/Random') 
 
 module.exports = class Player {
     constructor({ name, connection }, uid) {
@@ -49,7 +50,14 @@ module.exports = class Player {
         else
             this.health = this.health - damage
 
-        // TODO : checker si le joueur n'est pas mort
+        if (this.health <= 0) {
+            this.deaths = this.deaths + 1
+            this.health = 100
+            this.counter = false
+            this.stamina = 100
+            this.position.x = randomInteger(-46, 46)
+            this.position.z = randomInteger(-46, 46)
+        }
 
         return this
     }
@@ -79,6 +87,26 @@ module.exports = class Player {
 
     getCounter() {
         return this.counter
+    }
+
+    setStamina(value) {
+        this.stamina = value
+        return this
+    }
+
+    getStamina() {
+        return this.stamina
+    }
+
+    addKill() {
+        this.kills = this.kills + 1
+
+        if (this.health + 50 <= 100)
+            this.health = this.health + 50
+        else
+            this.health = 100
+
+        return this
     }
 
     toString() {
