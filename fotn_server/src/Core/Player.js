@@ -2,10 +2,11 @@ const config = require('../config')
 const { randomInteger } = require('../Util/Random') 
 
 module.exports = class Player {
-    constructor({ name, connection }, uid) {
+    constructor({ name, color, connection }, uid) {
         this.uid = uid
         this.connection = connection
         this.name = name
+        this.color = color
         this.position = {
             x: 0,
             y: 0,
@@ -113,6 +114,7 @@ module.exports = class Player {
         return {
             uid: this.uid,
             name: this.name,
+            color: this.color,
             position: this.position,
             look_direction: this.look_direction,
             health: this.health,

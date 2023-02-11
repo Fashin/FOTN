@@ -8,11 +8,12 @@ module.exports = class ConnectPlayer {
     }
 
     handle(connection, payload) {
-        if (!('pseudo' in payload) && payload.pseudo !== '')
+        if (!('pseudo' in payload) && payload.pseudo !== '' && !('color' in payload.color ))
             response.error(connection, errorEnum.PSEUDO_NOT_FOUND, { msg: "Error from sended data" })
 
         const player = this.core.players.add({
             name: payload.pseudo,
+            color: payload.color,
             connection
         })
 

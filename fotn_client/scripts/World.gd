@@ -3,6 +3,17 @@ extends Spatial
 var player = preload("res://scenes/Player.tscn")
 var otherPlayer = preload("res://scenes/PlayerTemplate.tscn")
 
+onready var shirts = {
+	'black': preload("res://assets/player/skins/black_shirt.material"),
+	'blue': preload("res://assets/player/skins/blue_shirt.material"),
+	'red': preload("res://assets/player/skins/red_shirt.material"),
+	'green': preload("res://assets/player/skins/green_shirt.material"),
+	'orange': preload("res://assets/player/skins/orange_shirt.material"),
+	'pink': preload("res://assets/player/skins/pink_shirt.material"),
+	'purple': preload("res://assets/player/skins/purple_shirt.material"),
+	'yellow': preload("res://assets/player/skins/yellow_shirt.material"),
+}
+
 func _ready():
 	Network.connect("player_is_logged", self, "handleLoggedPlayer")
 	Network.connect("player_is_disconnected", self, "despawnPlayer")
@@ -14,6 +25,7 @@ func spawnPlayer(player, currentInstance, type = "Others"):
 	new_player.global_transform.origin = origin
 	new_player._uid = str(player.uid)
 	new_player._name = str(player.name)
+	new_player.get_node("PlayerSkin/Armature/Skeleton/Cube").set_surface_material(2, shirts[player.color])
 	if type == "Player":
 		new_player.name = type
 	else:

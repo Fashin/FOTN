@@ -46,8 +46,8 @@ func data_received():
 	if payload && payload.code && payload.code == 200:
 		emit_signal(payload.event, payload.data)
 
-func login(pseudo):
-	sendData({ 'pseudo': pseudo }, 'ConnectPlayer')
+func login(pseudo, color):
+	sendData({ 'pseudo': pseudo, 'color': color }, 'ConnectPlayer')
 	
 func movePlayer(position, playerUid):
 	sendData({ 'position': position, 'uid': playerUid}, 'PlayerOnMove')

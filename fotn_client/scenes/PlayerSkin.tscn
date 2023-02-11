@@ -1,17 +1,22 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://assets/player/player5.gltf" type="PackedScene" id=1]
-[ext_resource path="res://scenes/Sword.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/player/player11.gltf" type="PackedScene" id=1]
+[ext_resource path="res://assets/player/blue_shirt.material" type="Material" id=2]
+[ext_resource path="res://assets/player/skin.material" type="Material" id=3]
+[ext_resource path="res://assets/player/pant.material" type="Material" id=4]
+[ext_resource path="res://scenes/Sword.tscn" type="PackedScene" id=5]
 
 [node name="PlayerSkin" instance=ExtResource( 1 )]
-transform = Transform( 0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0.378161, 0 )
+transform = Transform( 0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0.346635, 0 )
 
 [node name="Cube" parent="Armature/Skeleton" index="0"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.135259, 0 )
+material/0 = ExtResource( 3 )
+material/1 = ExtResource( 4 )
+material/2 = ExtResource( 2 )
 
 [node name="BoneAttachment" type="BoneAttachment" parent="Armature/Skeleton" index="1"]
-transform = Transform( -0.994844, 0.0120254, 0.100701, -0.0251505, -0.991181, -0.130107, 0.0982481, -0.131969, 0.986373, 3.08952, 0.212746, -0.0965701 )
+transform = Transform( -0.994844, 0.0120254, 0.100701, -0.0251506, -0.991181, -0.130107, 0.0982481, -0.131969, 0.986373, 3.08952, 0.212747, -0.0965701 )
 bone_name = "hand_left"
 
-[node name="Sword" parent="Armature/Skeleton/BoneAttachment" index="0" instance=ExtResource( 2 )]
-transform = Transform( -0.0989876, 0.00803462, -0.011702, -0.0124567, -0.00964213, 0.0987516, 0.00680596, 0.0992093, 0.0105454, 0.0229244, 0.396511, 0.499441 )
+[node name="Sword" parent="Armature/Skeleton/BoneAttachment" index="0" instance=ExtResource( 5 )]
+transform = Transform( -0.0990942, 0.0115085, 0.00692087, 0.00373819, -0.02586, 0.0965261, 0.0128984, 0.0959105, 0.0251956, 0.067728, 0.691344, 0.58654 )
