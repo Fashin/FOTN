@@ -3,6 +3,7 @@
 ## Installation
 
 ```
+cd fotn_server
 yarn
 ```
 
